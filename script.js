@@ -1,4 +1,4 @@
-//Функция проверки на число и похоже приводит к числу тоже
+//Функция проверки на число 
 const isNumber = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num) && num !== 0
  }
@@ -8,9 +8,8 @@ const startGame = function(){
     let attempts = 10;
 
     const game = function(){
-        attempts--
 
-        if(attempts < 0) {
+        if(attempts === 0) {
             if(confirm("Попытки закончились, хотите сыграть еще?")){
                 startGame();
             }else {
@@ -21,7 +20,7 @@ const startGame = function(){
              
         } else {
              
-            const number = prompt("Угадай число от 1 до 100")
+            let number = prompt("Угадай число от 1 до 100")
             
             if(number === null){
                 
@@ -31,7 +30,10 @@ const startGame = function(){
             }  
            
                 if(isNumber(number)){
-                    
+                    console.log(number, typeof number)
+                    number = +number;
+                    console.log(number, typeof number)
+                    attempts--
                     if(number > guessNum){
                         alert("Загаданное число меньше, осталось попыток:" + attempts)
                         game()
